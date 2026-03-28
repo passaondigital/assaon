@@ -1,0 +1,679 @@
+// =============================================================================
+// ASSAON ADMIN DASHBOARD — Styles
+// Dark Mode | Orange Accent #F5970A
+// =============================================================================
+
+$primary-orange: #F5970A;
+$primary-hover:  #D96A10;
+$dark-black:     #0a0700;
+$dark-bg:        #1a1a1a;
+$surface:        #2d2d2d;
+$surface-2:      #383838;
+$text-primary:   #ffffff;
+$text-secondary: #b0b0b0;
+$border:         #404040;
+$sidebar-width:  250px;
+
+// Reset & Base
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: $dark-bg;
+  color: $text-primary;
+  font-family: 'Poppins', sans-serif;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+// Header
+.admin-header {
+  height: 60px;
+  background: $surface;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+
+  .admin-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $primary-orange;
+    text-decoration: none;
+
+    span {
+      color: $text-primary;
+    }
+  }
+
+  .admin-header__spacer {
+    flex: 1;
+  }
+
+  .admin-header__badge {
+    background: rgba($primary-orange, 0.15);
+    color: $primary-orange;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba($primary-orange, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Body (Sidebar + Content)
+.admin-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+// Sidebar
+.admin-sidebar {
+  width: $sidebar-width;
+  background: darken($surface, 4%);
+  border-right: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  flex-shrink: 0;
+
+  &__logo {
+    padding: 1.5rem 1.25rem 1rem;
+    border-bottom: 1px solid $border;
+
+    .logo-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: $primary-orange;
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: $text-secondary;
+      margin-top: 2px;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 0.75rem 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    color: $text-secondary;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: all 0.15s ease;
+    user-select: none;
+
+    &:hover {
+      color: $text-primary;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    &.active {
+      color: $primary-orange;
+      border-left-color: $primary-orange;
+      background: rgba($primary-orange, 0.08);
+    }
+
+    .nav-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid $border;
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: 6px;
+    color: $text-secondary;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      border-color: #e05555;
+      color: #e05555;
+      background: rgba(224, 85, 85, 0.08);
+    }
+  }
+}
+
+// Main Content
+.admin-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+
+  h2.admin-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0 0 1.5rem;
+
+    span {
+      color: $primary-orange;
+    }
+  }
+}
+
+// KPI Cards
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $primary-orange;
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    color: $text-secondary;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+  }
+
+  &__value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.25rem;
+  }
+
+  &__delta {
+    font-size: 0.75rem;
+    color: #4ade80;
+    font-weight: 500;
+
+    &.neutral {
+      color: $primary-orange;
+    }
+  }
+}
+
+// Charts Grid
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba($primary-orange, 0.4);
+  }
+
+  &__title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  &__canvas {
+    max-height: 220px;
+  }
+}
+
+// Retention Bar
+.retention-bar {
+  margin-top: 1rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+
+    .label {
+      color: $text-secondary;
+    }
+
+    .value {
+      color: #4ade80;
+      font-weight: 600;
+    }
+  }
+
+  &__track {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+
+  &__sub {
+    font-size: 0.75rem;
+    color: $text-secondary;
+    margin-top: 0.5rem;
+  }
+}
+
+// Forms (Settings)
+.admin-form {
+  max-width: 640px;
+
+  &__group {
+    margin-bottom: 1.25rem;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-secondary;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid $border;
+    border-radius: 7px;
+    color: $text-primary;
+    font-size: 0.875rem;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: border-color 0.15s ease;
+    resize: vertical;
+
+    &:focus {
+      border-color: $primary-orange;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    &::placeholder {
+      color: lighten($text-secondary, 10%);
+    }
+  }
+
+  &__textarea {
+    min-height: 100px;
+  }
+}
+
+// Buttons
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+
+  &--primary {
+    background: $primary-orange;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background: $primary-hover;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    border: 1px solid $border;
+    color: $text-secondary;
+
+    &:hover {
+      border-color: $primary-orange;
+      color: $primary-orange;
+    }
+  }
+}
+
+// Branding Tab
+.branding-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.upload-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1.5rem;
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 1rem;
+  }
+
+  &__preview {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px dashed $border;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+      border-color: rgba($primary-orange, 0.4);
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .preview-placeholder {
+      color: $text-secondary;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    &.logo-preview {
+      width: 100%;
+      height: 100px;
+    }
+
+    &.favicon-preview {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  &__file-input {
+    width: 100%;
+    margin-bottom: 0.75rem;
+
+    input[type="file"] {
+      width: 100%;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid $border;
+      border-radius: 6px;
+      color: $text-secondary;
+      font-size: 0.8rem;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+
+      &::file-selector-button {
+        background: $surface-2;
+        border: none;
+        color: $text-primary;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8rem;
+        margin-right: 0.75rem;
+      }
+    }
+  }
+
+  &__hint {
+    font-size: 0.7rem;
+    color: $text-secondary;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.color-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1.5rem;
+  grid-column: 1 / -1;
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 1.25rem;
+  }
+
+  &__pickers {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    label {
+      font-size: 0.8rem;
+      color: $text-secondary;
+    }
+
+    input[type="color"] {
+      width: 48px;
+      height: 36px;
+      padding: 2px;
+      background: $surface-2;
+      border: 1px solid $border;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .color-hex {
+      font-size: 0.75rem;
+      color: $text-secondary;
+      font-family: monospace;
+    }
+  }
+}
+
+// Legal Tab
+.legal-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.legal-card {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba($primary-orange, 0.3);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__saved {
+    font-size: 0.75rem;
+    color: #4ade80;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  &__editor {
+    width: 100%;
+    min-height: 300px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid $border;
+    border-radius: 7px;
+    color: $text-primary;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s ease;
+
+    &:focus {
+      border-color: $primary-orange;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+  }
+}
+
+// Toast / Save notification
+.admin-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: $surface;
+  border: 1px solid $primary-orange;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 9999;
+  animation: slideIn 0.2s ease;
+
+  &.success {
+    border-color: #4ade80;
+    .toast-icon { color: #4ade80; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  .admin-sidebar {
+    position: fixed;
+    left: -$sidebar-width;
+    top: 60px;
+    z-index: 200;
+    transition: left 0.25s ease;
+    height: calc(100vh - 60px);
+
+    &.open {
+      left: 0;
+    }
+  }
+
+  .admin-main {
+    padding: 1rem;
+  }
+}
