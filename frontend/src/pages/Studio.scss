@@ -1,0 +1,306 @@
+@use '../styles/variables' as *;
+
+.studio {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: $bg;
+  position: relative;
+}
+
+// Sidebar
+.studio-sidebar {
+  flex-shrink: 0;
+  width: 260px;
+  background: $card-bg;
+  border-right: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.25s ease;
+  overflow: hidden;
+
+  &.closed { width: 0; }
+}
+
+.studio-sidebar-toggle {
+  position: absolute;
+  left: 260px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 48px;
+  background: $card-bg;
+  border: 1px solid $border;
+  border-left: none;
+  border-radius: 0 $r-sm $r-sm 0;
+  cursor: pointer;
+  font-size: 10px;
+  color: $text-muted;
+  z-index: 10;
+  transition: left 0.25s;
+
+  .studio-sidebar.closed ~ & { left: 0; }
+}
+
+.studio-sidebar-header {
+  padding: $sp-4 $sp-4 $sp-3;
+  border-bottom: 1px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-back {
+  font-size: 13px;
+  color: $text-secondary;
+  text-decoration: none;
+
+  &:hover { color: $primary; }
+}
+
+.studio-new-btn {
+  padding: $sp-1 $sp-3;
+  background: $primary;
+  color: $white;
+  border: none;
+  border-radius: $r-md;
+  font-size: 13px;
+  font-family: $font;
+  font-weight: $fw-semibold;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover { opacity: 0.85; }
+}
+
+.studio-sessions {
+  flex: 1;
+  overflow-y: auto;
+  padding: $sp-2;
+}
+
+.studio-session {
+  display: flex;
+  align-items: center;
+  padding: $sp-2 $sp-3;
+  border-radius: $r-md;
+  cursor: pointer;
+  gap: $sp-2;
+  transition: background 0.15s;
+
+  &:hover { background: $bg; }
+  &.active { background: $primary-subtle; }
+}
+
+.studio-session-title {
+  flex: 1;
+  font-size: 13px;
+  color: $text-secondary;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .studio-session.active & { color: $primary; font-weight: $fw-medium; }
+}
+
+.studio-session-del {
+  opacity: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $text-muted;
+  font-size: 16px;
+  padding: 0;
+  line-height: 1;
+
+  .studio-session:hover & { opacity: 1; }
+  &:hover { color: $error; }
+}
+
+.studio-sessions-empty {
+  padding: $sp-4;
+  font-size: 13px;
+  color: $text-muted;
+  text-align: center;
+}
+
+// Main
+.studio-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.studio-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: $sp-8;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-4;
+}
+
+// Welcome screen
+.studio-welcome {
+  text-align: center;
+  margin: auto;
+  padding: $sp-16 $sp-8;
+
+  &-icon { font-size: 48px; margin-bottom: $sp-4; }
+
+  h2 {
+    font-size: 28px;
+    font-weight: $fw-bold;
+    color: $black;
+    margin-bottom: $sp-2;
+  }
+
+  p { color: $text-secondary; margin-bottom: $sp-8; }
+}
+
+.studio-quick-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sp-3;
+  justify-content: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.studio-quick-prompt {
+  padding: $sp-3 $sp-4;
+  background: $card-bg;
+  border: 1.5px solid $border;
+  border-radius: $r-lg;
+  font-size: 14px;
+  font-family: $font;
+  cursor: pointer;
+  color: $text-secondary;
+  transition: border-color 0.15s, color 0.15s;
+  text-align: left;
+
+  &:hover { border-color: $primary; color: $primary; }
+}
+
+// Messages
+.studio-msg {
+  display: flex;
+
+  &-user { justify-content: flex-end; }
+  &-assistant { justify-content: flex-start; }
+}
+
+.studio-msg-bubble {
+  max-width: 70%;
+  padding: $sp-4 $sp-5;
+  border-radius: $r-lg;
+  font-size: 15px;
+  line-height: 1.6;
+
+  .studio-msg-user & {
+    background: $primary;
+    color: $white;
+    border-bottom-right-radius: $r-sm;
+  }
+
+  .studio-msg-assistant & {
+    background: $card-bg;
+    border: 1px solid $border;
+    color: $text-primary;
+    border-bottom-left-radius: $r-sm;
+  }
+
+  pre {
+    font-family: $font;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+  }
+}
+
+.studio-cursor {
+  display: inline-block;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.studio-thinking {
+  display: flex;
+  align-items: center;
+  gap: $sp-2;
+  padding: $sp-4 $sp-5;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background: $primary;
+    border-radius: $r-full;
+    animation: pulse 1.2s ease-in-out infinite;
+
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+// Input area
+.studio-input-area {
+  padding: $sp-4 $sp-8;
+  border-top: 1px solid $border;
+  display: flex;
+  gap: $sp-3;
+  align-items: flex-end;
+  background: $card-bg;
+}
+
+.studio-input {
+  flex: 1;
+  padding: $sp-3 $sp-4;
+  border: 1.5px solid $border;
+  border-radius: $r-lg;
+  font-family: $font;
+  font-size: 15px;
+  resize: none;
+  background: $bg;
+  color: $text-primary;
+  outline: none;
+  transition: border-color 0.2s;
+  line-height: 1.5;
+
+  &:focus { border-color: $primary; background: $white; }
+  &::placeholder { color: $text-muted; }
+  &:disabled { opacity: 0.7; }
+}
+
+.studio-send {
+  width: 44px;
+  height: 44px;
+  background: $primary;
+  color: $white;
+  border: none;
+  border-radius: $r-lg;
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) { opacity: 0.85; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+@media (max-width: 768px) {
+  .studio-sidebar { display: none; }
+  .studio-sidebar-toggle { display: none; }
+  .studio-messages { padding: $sp-4; }
+  .studio-input-area { padding: $sp-4; }
+  .studio-msg-bubble { max-width: 90%; }
+}

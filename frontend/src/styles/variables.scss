@@ -1,0 +1,105 @@
+// ─── Enterprise Color System ──────────────────────────────────────────────────
+
+// Orange accent — used sparingly for key actions only
+$primary:         #F5970A;
+$primary-hover:   #D96A10;
+$primary-muted:   rgba(245, 151, 10, 0.12);
+$primary-border:  rgba(245, 151, 10, 0.25);
+
+// Dark mode base (default)
+$bg-dark:         #0f0f0f;
+$surface-dark:    #1a1a1a;
+$surface-2-dark:  #242424;
+$surface-3-dark:  #2d2d2d;
+$border-dark:     #303030;
+$border-2-dark:   #404040;
+
+// Light mode
+$bg-light:        #ffffff;
+$surface-light:   #f8f8f8;
+$surface-2-light: #f0f0f0;
+$border-light:    #e5e5e5;
+
+// Text (dark mode)
+$text-1-dark:     #ffffff;
+$text-2-dark:     #b0b0b0;
+$text-3-dark:     #666666;
+
+// Text (light mode)
+$text-1-light:    #0f0f0f;
+$text-2-light:    #4a4a4a;
+$text-3-light:    #888888;
+
+// Defaults (dark mode first)
+$bg:              $bg-dark;
+$surface:         $surface-dark;
+$surface-2:       $surface-2-dark;
+$surface-3:       $surface-3-dark;
+$border:          $border-dark;
+$border-2:        $border-2-dark;
+$text-1:          $text-1-dark;
+$text-2:          $text-2-dark;
+$text-3:          $text-3-dark;
+
+// System
+$success:         #22c55e;
+$error:           #ef4444;
+$warning:         #f59e0b;
+$info:            #3b82f6;
+
+// ─── Typography ───────────────────────────────────────────────────────────────
+$font:            'Inter', 'Poppins', system-ui, sans-serif;
+$font-mono:       'Fira Code', 'Consolas', monospace;
+
+$fw-normal:       400;
+$fw-medium:       500;
+$fw-semibold:     600;
+$fw-bold:         700;
+
+// ─── Spacing (8px grid) ───────────────────────────────────────────────────────
+$sp-1:  4px;
+$sp-2:  8px;
+$sp-3:  12px;
+$sp-4:  16px;
+$sp-5:  20px;
+$sp-6:  24px;
+$sp-8:  32px;
+$sp-10: 40px;
+$sp-12: 48px;
+$sp-16: 64px;
+$sp-20: 80px;
+$sp-24: 96px;
+
+// ─── Radius ───────────────────────────────────────────────────────────────────
+$r-sm:   4px;
+$r-md:   8px;
+$r-lg:   12px;
+$r-xl:   16px;
+$r-full: 9999px;
+
+// ─── Shadows ──────────────────────────────────────────────────────────────────
+$shadow-sm:   0 1px 3px rgba(0, 0, 0, 0.4);
+$shadow-md:   0 4px 16px rgba(0, 0, 0, 0.5);
+$shadow-lg:   0 12px 40px rgba(0, 0, 0, 0.6);
+$shadow-glow: 0 0 24px rgba(245, 151, 10, 0.2);
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+$max-w:        1200px;
+$max-w-narrow: 800px;
+$nav-h:        64px;
+
+// ─── Backwards-compatible aliases (for older component SCSS) ─────────────────
+$primary-dark:    $primary-hover;
+$primary-glow:    $primary-muted;
+$primary-subtle:  $primary-muted;
+$black:           $bg;
+$black-mid:       $surface;
+$black-soft:      $surface-2;
+$white:           #ffffff;
+$off-white:       $surface;
+$card-bg:         $surface;
+$text-primary:    $text-1;
+$text-secondary:  $text-2;
+$text-muted:      $text-3;
+$shadow-orange:   $shadow-glow;
+$fw-extrabold:    800;

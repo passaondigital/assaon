@@ -1,0 +1,593 @@
+@use './variables' as *;
+
+// ─── Override font to Poppins ──────────────────────────────────────────────────
+$lp-font: 'Poppins', system-ui, sans-serif;
+
+// ─── Root ─────────────────────────────────────────────────────────────────────
+.lp {
+  background: #0a0700;
+  color: $text-1;
+  font-family: $lp-font;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+// ─── Container ────────────────────────────────────────────────────────────────
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+}
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $primary;
+  color: #0a0700;
+  font-family: $lp-font;
+  font-weight: $fw-semibold;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: $r-md;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+
+  &:hover { background: $primary-hover; }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: $primary;
+  font-family: $lp-font;
+  font-weight: $fw-semibold;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: $r-md;
+  border: 1.5px solid $primary;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: $primary;
+    color: #0a0700;
+  }
+}
+
+.btn-large {
+  font-size: 1rem;
+  padding: 0.85rem 2rem;
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+.lp-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 64px;
+  background: rgba(10, 7, 0, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid $border;
+}
+
+.lp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 2rem;
+}
+
+.lp-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.lp-logo-icon {
+  display: flex;
+  align-items: center;
+}
+
+.lp-logo-name {
+  font-size: 1.2rem;
+  font-weight: $fw-bold;
+  color: $text-1;
+  letter-spacing: -0.02em;
+}
+
+.lp-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    color: $text-2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: $fw-medium;
+    transition: color 0.2s ease;
+
+    &:hover { color: $text-1; }
+  }
+
+  @media (max-width: 768px) { display: none; }
+}
+
+.lp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  @media (max-width: 768px) { display: none; }
+}
+
+.lp-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: $text-1;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: 768px) { display: flex; }
+}
+
+.lp-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem 1.5rem;
+  background: #0a0700;
+  border-top: 1px solid $border;
+
+  a {
+    color: $text-2;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: $fw-medium;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $border;
+
+    &:hover { color: $text-1; }
+  }
+}
+
+.lp-mobile-ctas {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.lp-hero {
+  padding: 9rem 0 5rem;
+  border-bottom: 1px solid $border;
+
+  @media (max-width: 768px) {
+    padding: 7rem 0 3rem;
+  }
+}
+
+.lp-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.lp-hero-eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $primary;
+  margin-bottom: 1.25rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(245, 151, 10, 0.35);
+  border-radius: $r-full;
+}
+
+.lp-hero-h1 {
+  font-size: 3.5rem;
+  font-weight: $fw-bold;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: $text-1;
+  margin: 0 0 1.25rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.lp-hero-accent {
+  color: $primary;
+}
+
+.lp-hero-tagline {
+  font-size: 1.15rem;
+  font-weight: $fw-medium;
+  color: $text-2;
+  margin: 0 0 1rem;
+  line-height: 1.6;
+}
+
+.lp-hero-desc {
+  font-size: 1rem;
+  color: $text-3;
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  max-width: 480px;
+}
+
+.lp-hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.lp-hero-proof {
+  font-size: 0.85rem;
+  color: $text-3;
+  margin: 0;
+
+  strong { color: $text-2; }
+}
+
+.lp-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    order: -1;
+  }
+}
+
+.lp-logo-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(245, 151, 10, 0.08) 0%, transparent 70%);
+  border: 1px solid rgba(245, 151, 10, 0.15);
+
+  @media (max-width: 768px) {
+    width: 240px;
+    height: 240px;
+
+    svg {
+      width: 220px;
+      height: 220px;
+    }
+  }
+}
+
+// ─── Sections ─────────────────────────────────────────────────────────────────
+.lp-section {
+  padding: 5rem 0;
+  border-bottom: 1px solid $border;
+}
+
+.lp-section-alt {
+  background: #111008;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+
+  h2 {
+    font-size: 2.25rem;
+    font-weight: $fw-bold;
+    letter-spacing: -0.025em;
+    color: $text-1;
+    margin: 0 0 0.75rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    color: $text-2;
+    margin: 0;
+  }
+}
+
+// ─── Cards Grid ───────────────────────────────────────────────────────────────
+.lp-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lp-card {
+  background: #1a1a12;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  padding: 1.75rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: $primary;
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: $fw-semibold;
+    color: $text-1;
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: $text-2;
+    line-height: 1.65;
+    margin: 0 0 1rem;
+  }
+}
+
+.lp-card-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.lp-card-link {
+  font-size: 0.8rem;
+  font-weight: $fw-semibold;
+  color: $primary;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.75; }
+}
+
+// ─── Pricing ──────────────────────────────────────────────────────────────────
+.lp-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+.lp-pricing-card {
+  position: relative;
+  background: #1a1a12;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  padding: 2rem;
+
+  &.featured {
+    border-color: $primary;
+    box-shadow: 0 0 32px rgba(245, 151, 10, 0.15);
+    transform: scale(1.03);
+
+    @media (max-width: 900px) {
+      transform: none;
+    }
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: $fw-semibold;
+    color: $text-2;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 1rem;
+  }
+}
+
+.lp-pricing-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: $fw-bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0a0700;
+  background: $primary;
+  border-radius: $r-full;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.lp-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.lp-price-amount {
+  font-size: 2.5rem;
+  font-weight: $fw-bold;
+  color: $text-1;
+  letter-spacing: -0.03em;
+}
+
+.lp-price-period {
+  font-size: 0.9rem;
+  color: $text-3;
+}
+
+.lp-price-desc {
+  font-size: 0.85rem;
+  color: $text-3;
+  margin: 0 0 1.5rem;
+}
+
+.lp-price-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: $text-2;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(64, 64, 64, 0.4);
+
+    &:last-child { border-bottom: none; }
+  }
+}
+
+.lp-check {
+  color: $primary;
+  font-weight: $fw-bold;
+  flex-shrink: 0;
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.lp-footer {
+  background: #0a0700;
+  border-top: 1px solid $border;
+}
+
+.lp-footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 4rem;
+  padding: 4rem 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.lp-footer-brand {
+  .lp-logo { margin-bottom: 1rem; }
+}
+
+.lp-footer-tagline {
+  font-size: 0.875rem;
+  color: $text-3;
+  margin: 0 0 1.25rem;
+}
+
+.lp-footer-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-3;
+  border: 1px solid $border;
+  border-radius: $r-full;
+  padding: 0.2rem 0.6rem;
+}
+
+.lp-footer-cols {
+  display: contents;
+}
+
+.lp-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  h4 {
+    font-size: 0.75rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $text-2;
+    margin: 0 0 0.25rem;
+  }
+
+  a {
+    font-size: 0.875rem;
+    color: $text-3;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover { color: $text-1; }
+  }
+}
+
+.lp-footer-bottom {
+  border-top: 1px solid $border;
+}
+
+.lp-footer-bottom-inner {
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 0.8rem;
+    color: $text-3;
+    margin: 0;
+  }
+}

@@ -1,0 +1,771 @@
+@use '../styles/variables' as *;
+
+// ─── Root wrapper ─────────────────────────────────────────────────────────────
+.lp {
+  background: $bg;
+  color: $text-1;
+  font-family: $font;
+  overflow-x: hidden;
+}
+
+// ─── Nav ──────────────────────────────────────────────────────────────────────
+.lp-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: $nav-h;
+  background: rgba(15, 15, 15, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid $border;
+}
+
+.lp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.lp-logo {
+  display: flex;
+  align-items: center;
+  gap: $sp-2;
+  text-decoration: none;
+}
+
+.lp-logo-mark {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $primary;
+  color: #000;
+  border-radius: $r-sm;
+  font-size: 16px;
+  font-weight: $fw-bold;
+  letter-spacing: -0.03em;
+  flex-shrink: 0;
+}
+
+.lp-logo-name {
+  font-size: 16px;
+  font-weight: $fw-semibold;
+  color: $text-1;
+  letter-spacing: -0.01em;
+}
+
+.lp-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+
+  a {
+    font-size: 14px;
+    font-weight: $fw-medium;
+    color: $text-2;
+    transition: color 0.15s;
+
+    &:hover { color: $text-1; }
+  }
+
+  @media (max-width: 900px) { display: none; }
+}
+
+.lp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: $sp-3;
+
+  @media (max-width: 600px) { .btn-secondary { display: none; } }
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.lp-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: $nav-h;
+  overflow: hidden;
+}
+
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 800px 600px at 70% 40%, rgba(245, 151, 10, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 20% 80%, rgba(245, 151, 10, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.lp-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $sp-16;
+  align-items: center;
+  padding: $sp-20 $sp-8;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: $sp-16 $sp-4;
+  }
+}
+
+.lp-hero-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $primary;
+  margin-bottom: $sp-5;
+}
+
+.lp-hero-h1 {
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: $fw-bold;
+  color: $text-1;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: $sp-6;
+}
+
+.lp-hero-subtitle {
+  font-size: 18px;
+  color: $text-2;
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: $sp-8;
+}
+
+.lp-hero-cta {
+  display: flex;
+  gap: $sp-3;
+  flex-wrap: wrap;
+  margin-bottom: $sp-6;
+}
+
+.lp-hero-trust {
+  font-size: 13px;
+  color: $text-3;
+}
+
+// Product screenshot mockup
+.lp-hero-app {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+
+  @media (max-width: 900px) { display: none; }
+}
+
+.lp-app-topbar {
+  display: flex;
+  align-items: center;
+  gap: $sp-3;
+  padding: $sp-3 $sp-4;
+  background: $surface-2;
+  border-bottom: 1px solid $border;
+}
+
+.lp-app-dots {
+  display: flex;
+  gap: 5px;
+
+  span {
+    width: 10px;
+    height: 10px;
+    border-radius: $r-full;
+    background: $border-2;
+
+    &:nth-child(1) { background: $error; }
+    &:nth-child(2) { background: $warning; }
+    &:nth-child(3) { background: $success; }
+  }
+}
+
+.lp-app-title {
+  font-size: 12px;
+  color: $text-3;
+}
+
+.lp-app-body {
+  display: flex;
+  height: 320px;
+}
+
+.lp-app-sidebar {
+  width: 140px;
+  background: $surface-2;
+  border-right: 1px solid $border;
+  padding: $sp-4 0;
+  flex-shrink: 0;
+}
+
+.lp-app-nav-item {
+  padding: $sp-2 $sp-4;
+  font-size: 12px;
+  color: $text-3;
+  cursor: pointer;
+
+  &.active {
+    color: $primary;
+    background: $primary-muted;
+    border-right: 2px solid $primary;
+  }
+}
+
+.lp-app-content {
+  flex: 1;
+  padding: $sp-5;
+  overflow: hidden;
+}
+
+.lp-app-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $sp-4;
+}
+
+.lp-app-h {
+  font-size: 14px;
+  font-weight: $fw-semibold;
+  color: $text-1;
+}
+
+.lp-app-btn {
+  font-size: 11px;
+  padding: 4px $sp-3;
+  background: $primary;
+  color: #000;
+  border-radius: $r-sm;
+  font-weight: $fw-semibold;
+}
+
+.lp-app-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 80px 80px;
+  gap: $sp-3;
+  padding: $sp-3 0;
+  border-bottom: 1px solid $border;
+  align-items: center;
+}
+
+.lp-app-cell {
+  font-size: 12px;
+  color: $text-2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lp-app-cell-name { color: $text-1; font-weight: $fw-medium; }
+.lp-app-cell-status {
+  font-size: 11px;
+  font-weight: $fw-semibold;
+  padding: 2px 8px;
+  border-radius: $r-full;
+  text-align: center;
+
+  &.status-active { background: rgba(34, 197, 94, 0.12); color: $success; }
+  &.status-followup { background: rgba(245, 158, 11, 0.12); color: $warning; }
+}
+
+// ─── Trust Bar ────────────────────────────────────────────────────────────────
+.lp-trust-bar {
+  padding: $sp-6 0;
+  border-top: 1px solid $border;
+  border-bottom: 1px solid $border;
+  background: $surface;
+}
+
+.lp-trust-inner {
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  overflow: hidden;
+
+  @media (max-width: 768px) { flex-direction: column; gap: $sp-4; }
+}
+
+.lp-trust-label {
+  font-size: 12px;
+  color: $text-3;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lp-trust-logos {
+  display: flex;
+  gap: $sp-8;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.lp-trust-logo {
+  font-size: 12px;
+  font-weight: $fw-semibold;
+  color: $text-3;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+// ─── Sections ─────────────────────────────────────────────────────────────────
+.lp-section {
+  padding: $sp-24 0;
+
+  &-alt { background: $surface; }
+}
+
+// ─── Features ────────────────────────────────────────────────────────────────
+.lp-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $sp-4;
+
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.lp-feature-card {
+  padding: $sp-6;
+  background: $surface-2;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: $primary-border; }
+
+  .lp-feature-icon {
+    font-size: 20px;
+    margin-bottom: $sp-4;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $surface-3;
+    border-radius: $r-md;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: $fw-semibold;
+    color: $text-1;
+    margin-bottom: $sp-2;
+  }
+
+  p { font-size: 14px; color: $text-2; line-height: 1.6; }
+}
+
+// ─── Solutions ────────────────────────────────────────────────────────────────
+.lp-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $sp-4;
+
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.lp-solution-card {
+  padding: $sp-6;
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: $primary-border;
+    box-shadow: $shadow-sm;
+  }
+
+  .lp-solution-icon {
+    font-size: 22px;
+    margin-bottom: $sp-4;
+  }
+
+  h3 { font-size: 15px; font-weight: $fw-semibold; color: $text-1; margin-bottom: $sp-2; }
+  p  { font-size: 13px; color: $text-2; line-height: 1.6; margin-bottom: $sp-4; }
+}
+
+// ─── Testimonials ─────────────────────────────────────────────────────────────
+.lp-testimonials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $sp-5;
+
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+.lp-testimonial {
+  padding: $sp-8;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-6;
+}
+
+.lp-testimonial-quote {
+  font-size: 15px;
+  color: $text-1;
+  line-height: 1.7;
+  position: relative;
+}
+
+.lp-quote-mark {
+  font-size: 40px;
+  color: $primary;
+  line-height: 1;
+  margin-right: 4px;
+  vertical-align: -8px;
+  font-family: Georgia, serif;
+}
+
+.lp-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: $sp-3;
+  margin-top: auto;
+}
+
+.lp-author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: $r-full;
+  background: $primary;
+  color: #000;
+  font-size: 14px;
+  font-weight: $fw-bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-author-name { font-size: 14px; font-weight: $fw-semibold; color: $text-1; }
+.lp-author-title { font-size: 12px; color: $text-2; }
+.lp-author-company { font-size: 12px; color: $text-3; }
+
+// ─── Process ──────────────────────────────────────────────────────────────────
+.lp-process {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: $sp-4;
+}
+
+.lp-process-step-wrap {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 160px;
+}
+
+.lp-process-step {
+  flex: 1;
+  text-align: center;
+  padding: $sp-6 $sp-4;
+
+  h3 {
+    font-size: 15px;
+    font-weight: $fw-semibold;
+    color: $text-1;
+    margin: $sp-3 0 $sp-2;
+  }
+
+  p { font-size: 13px; color: $text-2; line-height: 1.6; }
+}
+
+.lp-step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: $r-full;
+  background: $primary;
+  color: #000;
+  font-size: 16px;
+  font-weight: $fw-bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.lp-process-arrow {
+  font-size: 18px;
+  color: $text-3;
+  margin-top: 52px;
+  flex-shrink: 0;
+}
+
+// ─── Tech / Security ──────────────────────────────────────────────────────────
+.lp-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $sp-4;
+
+  @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.lp-tech-card {
+  padding: $sp-6;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-lg;
+
+  h3 {
+    font-size: 14px;
+    font-weight: $fw-semibold;
+    color: $text-1;
+    margin-bottom: $sp-4;
+    padding-bottom: $sp-3;
+    border-bottom: 1px solid $border;
+  }
+
+  ul { list-style: none; display: flex; flex-direction: column; gap: $sp-2; }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: $sp-2;
+    font-size: 13px;
+    color: $text-2;
+    line-height: 1.4;
+  }
+}
+
+.lp-check {
+  color: $success;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+// ─── Pricing ──────────────────────────────────────────────────────────────────
+.lp-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $sp-5;
+  align-items: stretch;
+
+  @media (max-width: 900px) { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
+.lp-pricing-card {
+  position: relative;
+  padding: $sp-8;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $r-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-4;
+
+  &.featured {
+    border-color: $primary-border;
+    background: $surface-2;
+    box-shadow: $shadow-glow;
+  }
+}
+
+.lp-pricing-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: $fw-bold;
+  letter-spacing: 0.1em;
+  color: $primary;
+  background: $primary-muted;
+  border: 1px solid $primary-border;
+  border-radius: $r-sm;
+  padding: 2px 8px;
+  margin-bottom: $sp-1;
+}
+
+.lp-pricing-card h3 {
+  font-size: 18px;
+  font-weight: $fw-semibold;
+  color: $text-1;
+}
+
+.lp-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.lp-price-amount {
+  font-size: 36px;
+  font-weight: $fw-bold;
+  color: $text-1;
+  letter-spacing: -0.03em;
+}
+
+.lp-price-period {
+  font-size: 14px;
+  color: $text-3;
+}
+
+.lp-price-desc {
+  font-size: 13px;
+  color: $text-2;
+  line-height: 1.5;
+}
+
+.lp-price-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-3;
+  flex: 1;
+  margin-bottom: $sp-2;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: $sp-2;
+    font-size: 13px;
+    color: $text-2;
+  }
+}
+
+// ─── Final CTA ────────────────────────────────────────────────────────────────
+.lp-final-cta {
+  padding: $sp-24 0;
+  background: $surface;
+  border-top: 1px solid $border;
+  border-bottom: 1px solid $border;
+}
+
+.lp-cta-inner {
+  text-align: center;
+
+  h2 {
+    font-size: 36px;
+    font-weight: $fw-bold;
+    color: $text-1;
+    letter-spacing: -0.02em;
+    margin-bottom: $sp-4;
+  }
+
+  p {
+    font-size: 17px;
+    color: $text-2;
+    margin-bottom: $sp-10;
+  }
+}
+
+.lp-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: $sp-4;
+  flex-wrap: wrap;
+  margin-bottom: $sp-6;
+}
+
+.lp-cta-fine {
+  font-size: 13px;
+  color: $text-3;
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.lp-footer {
+  background: $surface;
+  border-top: 1px solid $border;
+}
+
+.lp-footer-inner {
+  display: flex;
+  gap: $sp-16;
+  padding: $sp-16 $sp-8;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) { flex-direction: column; gap: $sp-10; padding: $sp-10 $sp-4; }
+}
+
+.lp-footer-brand {
+  flex: 1;
+  min-width: 200px;
+
+  p {
+    margin-top: $sp-4;
+    font-size: 13px;
+    color: $text-3;
+    max-width: 220px;
+    line-height: 1.5;
+  }
+}
+
+.lp-footer-contact {
+  margin-top: $sp-4;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-1;
+
+  span {
+    font-size: 13px;
+    color: $text-3;
+  }
+}
+
+.lp-footer-cols {
+  display: flex;
+  gap: $sp-12;
+  flex-wrap: wrap;
+
+  @media (max-width: 560px) { gap: $sp-8; }
+}
+
+.lp-footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-3;
+  min-width: 110px;
+
+  h4 {
+    font-size: 12px;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $text-3;
+    margin-bottom: $sp-1;
+  }
+
+  a {
+    font-size: 14px;
+    color: $text-2;
+    transition: color 0.15s;
+    &:hover { color: $text-1; }
+  }
+}
+
+.lp-footer-bottom {
+  border-top: 1px solid $border;
+  padding: $sp-5 0;
+}
+
+.lp-footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $sp-4;
+
+  p { font-size: 13px; color: $text-3; }
+}
+
+.lp-footer-badges {
+  display: flex;
+  gap: $sp-2;
+}

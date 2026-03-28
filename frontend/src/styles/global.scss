@@ -1,0 +1,155 @@
+@use './variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font;
+  font-size: 14px;
+  line-height: 1.5;
+  background: $bg;
+  color: $text-1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: $font;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: $border-2;
+  border-radius: $r-full;
+  &:hover { background: #555; }
+}
+
+::selection {
+  background: $primary-muted;
+  color: $text-1;
+}
+
+// ─── Global utilities ─────────────────────────────────────────────────────────
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-2;
+  padding: 10px $sp-5;
+  background: $primary;
+  color: #000;
+  font-size: 14px;
+  font-weight: $fw-semibold;
+  border: none;
+  border-radius: $r-md;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+  text-decoration: none;
+
+  &:hover { background: $primary-hover; }
+  &:active { transform: scale(0.98); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  &.btn-large { padding: 12px $sp-8; font-size: 15px; }
+  &.btn-full  { width: 100%; }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-2;
+  padding: 10px $sp-5;
+  background: transparent;
+  color: $text-1;
+  font-size: 14px;
+  font-weight: $fw-medium;
+  border: 1px solid $border-2;
+  border-radius: $r-md;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+  text-decoration: none;
+
+  &:hover { border-color: #606060; background: $surface-2; }
+  &:active { transform: scale(0.98); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  &.btn-large { padding: 12px $sp-8; font-size: 15px; }
+  &.btn-full  { width: 100%; }
+}
+
+.container {
+  max-width: $max-w;
+  margin: 0 auto;
+  padding: 0 $sp-8;
+
+  @media (max-width: 768px) { padding: 0 $sp-4; }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: $sp-16;
+
+  h2 {
+    font-size: 32px;
+    font-weight: $fw-bold;
+    color: $text-1;
+    letter-spacing: -0.02em;
+    margin-bottom: $sp-3;
+  }
+
+  p {
+    font-size: 16px;
+    color: $text-2;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.link {
+  color: $primary;
+  font-size: 14px;
+  font-weight: $fw-medium;
+  transition: opacity 0.15s;
+  &:hover { opacity: 0.8; }
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: $surface-3;
+  border: 1px solid $border-2;
+  border-radius: $r-sm;
+  font-size: 11px;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-2;
+}
