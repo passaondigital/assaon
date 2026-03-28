@@ -5,6 +5,7 @@ import SignupPage from './pages/Signup';
 import DashboardPage from './pages/Dashboard';
 import StudioPage from './pages/Studio';
 import MissionControlPage from './pages/MissionControl';
+import Phase4Integrations from './pages/Phase4Integrations';
 import { isLoggedIn } from './lib/auth';
 
 function RequireAuth({ children }: { children: JSX.Element }) {
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
         <Route path="/studio" element={<RequireAuth><StudioPage /></RequireAuth>} />
         <Route path="/mission-control" element={<MissionControlPage />} />
+        <Route path="/integrations" element={<Phase4Integrations />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,625 @@
+// =============================================================================
+// ASSAON INTEGRATIONS & API DASHBOARD — Phase 4 Styles
+// Dark Mode | Orange Accent #F5970A
+// =============================================================================
+
+$orange:   #F5970A;
+$orange-h: #D96A10;
+$bg:       #0f0f0f;
+$surface:  #141414;
+$surface2: #1a1a1a;
+$surface3: #222222;
+$border:   #1e1e1e;
+$border2:  #2a2a2a;
+$text1:    #ffffff;
+$text2:    #b0b0b0;
+$text3:    #666666;
+$ok:       #22c55e;
+$warn:     #f59e0b;
+$err:      #ef4444;
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+
+.int-layout {
+  display: flex;
+  min-height: 100vh;
+  background: $bg;
+  color: $text1;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  * { box-sizing: border-box; }
+}
+
+// ─── Sidebar ─────────────────────────────────────────────────────────────────
+
+.int-sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: $surface;
+  border-right: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid $border;
+  }
+  &__logo-icon { font-size: 26px; }
+  &__logo-title { font-size: 14px; font-weight: 700; }
+  &__logo-sub   { font-size: 11px; color: $text3; }
+
+  &__nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: $text3;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: all 0.15s;
+    &:hover { background: $surface2; color: $text2; }
+    &.active { background: rgba(245,151,10,0.1); color: $orange; border-left: 3px solid $orange; padding-left: 9px; }
+  }
+
+  &__item-icon  { font-size: 18px; flex-shrink: 0; }
+  &__item-label { display: block; font-size: 13px; font-weight: 600; }
+  &__item-desc  { display: block; font-size: 10px; color: $text3; margin-top: 1px; }
+
+  &__footer {
+    padding: 16px 20px;
+    border-top: 1px solid $border;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  &__back {
+    font-size: 12px;
+    color: $text3;
+    text-decoration: none;
+    &:hover { color: $orange; }
+  }
+  &__version { font-size: 10px; color: #2a2a2a; margin-top: 6px; }
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+.int-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.int-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid $border;
+  background: $surface;
+
+  &__title { font-size: 20px; font-weight: 700; margin: 0; }
+  &__sub    { font-size: 12px; color: $text3; }
+  &__left   { display: flex; flex-direction: column; gap: 2px; }
+  &__right  { display: flex; align-items: center; gap: 16px; }
+  &__badge  { font-size: 11px; color: $ok; background: rgba(34,197,94,0.1); padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(34,197,94,0.2); }
+}
+
+.int-content { padding: 24px 28px; flex: 1; }
+
+// ─── Subtabs ─────────────────────────────────────────────────────────────────
+
+.int-subtabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: $surface;
+  border-radius: 8px;
+  padding: 4px;
+  width: fit-content;
+  border: 1px solid $border;
+}
+
+.int-subtab {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: $text3;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  &:hover { color: $text2; }
+  &.active { background: $surface2; color: $text1; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+}
+
+// ─── Shared Buttons ──────────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 6px; border: 1px solid transparent;
+  font-size: 13px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all 0.15s;
+
+  &--primary   { background: $orange; color: #000; border-color: $orange; &:hover { background: $orange-h; } &:disabled { opacity: 0.5; cursor: not-allowed; } }
+  &--secondary { background: $surface2; color: $text2; border-color: $border2; &:hover { border-color: $orange; color: $orange; } }
+  &--sm        { padding: 5px 12px; font-size: 12px; }
+}
+
+// ─── Integration Card ────────────────────────────────────────────────────────
+
+.int-card {
+  background: $surface;
+  border: 1px solid $border2;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  &__logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__title-wrap { flex: 1; }
+  &__title   { font-size: 15px; font-weight: 700; margin: 0; }
+  &__account { font-size: 11px; color: $text3; font-family: monospace; }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+    margin-bottom: 16px;
+  }
+
+  &__stat { display: flex; flex-direction: column; gap: 3px; }
+  &__stat-label { font-size: 10px; color: $text3; text-transform: uppercase; letter-spacing: 0.04em; }
+  &__stat-value { font-size: 14px; font-weight: 600; &.ok { color: $ok; } &.err { color: $err; } }
+
+  &__body { margin-bottom: 16px; }
+  &__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+}
+
+// ─── Badges ──────────────────────────────────────────────────────────────────
+
+.int-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+
+  &--ok      { background: rgba(34,197,94,0.12);  color: $ok;   border: 1px solid rgba(34,197,94,0.25); }
+  &--warn    { background: rgba(245,158,11,0.12); color: $warn; border: 1px solid rgba(245,158,11,0.25); }
+  &--err     { background: rgba(239,68,68,0.12);  color: $err;  border: 1px solid rgba(239,68,68,0.25); }
+  &--prod    { background: rgba(245,151,10,0.12); color: $orange; border: 1px solid rgba(245,151,10,0.25); }
+  &--staging { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+}
+
+// ─── Tables ──────────────────────────────────────────────────────────────────
+
+.int-table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid $border; }
+
+.int-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  thead tr { background: $surface; border-bottom: 1px solid $surface3; }
+  th {
+    padding: 10px 14px;
+    text-align: left;
+    color: $text3;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $border;
+    transition: background 0.1s;
+    &:hover { background: $surface2; }
+    &:last-child { border-bottom: none; }
+  }
+
+  td { padding: 10px 14px; color: $text2; }
+
+  &__dim     { color: $text3; }
+  &__bold    { color: $text1; font-weight: 600; }
+  &__mono    { font-family: monospace; color: $ok; }
+  &__row--stale { background: rgba(245,158,11,0.03); }
+  &__actions { display: flex; gap: 6px; }
+}
+
+.int-count {
+  font-size: 11px;
+  color: $text3;
+  background: $surface3;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.int-section {
+  margin-bottom: 28px;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    h3, h4 { margin: 0; font-size: 14px; font-weight: 600; display: flex; align-items: center; }
+    &__actions { display: flex; gap: 8px; }
+  }
+}
+
+.int-tab-content { display: flex; flex-direction: column; }
+
+// ─── Forms ────────────────────────────────────────────────────────────────────
+
+.int-input, .int-select {
+  width: 100%;
+  background: $surface3;
+  border: 1px solid $border2;
+  border-radius: 6px;
+  color: $text1;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  &::placeholder { color: $text3; }
+  &:focus { outline: none; border-color: $orange; }
+  option { background: $surface; }
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  label { font-size: 12px; color: $text3; font-weight: 500; }
+  &--inline { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+
+.form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+
+.wh-create-form {
+  background: $surface2;
+  border: 1px solid $border2;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  h4 { margin: 0 0 16px; font-size: 14px; }
+}
+
+// ─── Toggle ───────────────────────────────────────────────────────────────────
+
+.toggle-btn {
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: $surface3;
+  border: 1px solid $border2;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.2s;
+
+  &.on { background: $orange; border-color: $orange; }
+
+  &.sm { width: 32px; height: 18px; border-radius: 9px; }
+
+  &__knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $text3;
+    transition: all 0.2s;
+
+    .toggle-btn.on & { left: calc(100% - 18px); background: #000; }
+    .toggle-btn.sm & { width: 12px; height: 12px; .on & { left: calc(100% - 14px); } }
+    .toggle-btn.sm.on & { left: calc(100% - 14px); }
+  }
+}
+
+// ─── Action Buttons ───────────────────────────────────────────────────────────
+
+.action-btn-sm {
+  background: $surface2;
+  border: 1px solid $border2;
+  border-radius: 4px;
+  color: $text2;
+  font-size: 11px;
+  padding: 4px 9px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.12s;
+  &:hover { border-color: $orange; color: $orange; }
+  &--danger:hover { border-color: $err; color: $err; }
+}
+
+.int-code {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: $text2;
+  background: $surface3;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ok-text   { color: $ok; }
+.warn-text { color: $warn; }
+.err-text  { color: $err; }
+
+// ─── Stripe ──────────────────────────────────────────────────────────────────
+
+.stripe-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stripe-metric {
+  display: flex; flex-direction: column; gap: 3px;
+  &__label { font-size: 11px; color: $text3; text-transform: uppercase; letter-spacing: 0.04em; }
+  &__value { font-size: 22px; font-weight: 700; &.green { color: $ok; } }
+  &__delta { font-size: 12px; color: $ok; &.up { color: $ok; } }
+}
+
+// ─── Supabase ────────────────────────────────────────────────────────────────
+
+.supa-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.supa-status-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: $surface3;
+  border-radius: 8px;
+  border-left: 3px solid $border2;
+  &.ok { border-left-color: $ok; }
+  &.err { border-left-color: $err; }
+}
+
+.supa-status-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.supa-status-label { display: block; font-size: 10px; color: $text3; text-transform: uppercase; margin-bottom: 2px; }
+.supa-status-val { font-size: 13px; font-weight: 600; }
+.supa-url { font-family: monospace; font-size: 11px; color: $text2; word-break: break-all; }
+
+// ─── GitHub ──────────────────────────────────────────────────────────────────
+
+.gh-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: $surface3;
+  border-radius: 8px;
+  padding: 12px 14px;
+
+  &__row { display: flex; align-items: center; gap: 12px; }
+  &__label { font-size: 11px; color: $text3; width: 90px; flex-shrink: 0; }
+  &__link { color: $orange; text-decoration: none; font-size: 13px; &:hover { text-decoration: underline; } }
+  &__value { font-size: 13px; color: $text2; }
+}
+
+.gh-deploy-config {
+  background: $surface3;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gh-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: $text2;
+  .int-select { width: auto; padding: 5px 10px; }
+}
+
+.gh-webhook-url { display: flex; flex-direction: column; gap: 6px; }
+.gh-webhook-row { display: flex; align-items: center; gap: 8px; }
+.gh-webhook-code { font-family: monospace; font-size: 11px; color: $text3; background: $surface; padding: 6px 10px; border-radius: 4px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border: 1px solid $border; }
+
+// ─── Webhooks ────────────────────────────────────────────────────────────────
+
+.wh-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+
+.wh-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: $surface;
+  border: 1px solid $border2;
+  border-radius: 10px;
+  transition: border-color 0.15s;
+  &:hover { border-color: $orange; }
+  &.inactive { opacity: 0.5; }
+
+  &__main { flex: 1; min-width: 0; }
+  &__event { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  &__url { font-size: 12px; color: $text3; font-family: monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+  &__meta { font-size: 11px; color: $text3; }
+  &__actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+}
+
+.wh-example {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 4px;
+
+  &__label { font-size: 11px; color: $text3; display: block; margin-bottom: 6px; }
+  &__code { font-family: 'Fira Code', monospace; font-size: 11px; color: $text2; white-space: pre; overflow-x: auto; margin: 0; }
+}
+
+// ─── API Keys ────────────────────────────────────────────────────────────────
+
+.apikey-cell { display: flex; align-items: center; gap: 8px; }
+.apikey-hash { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.stale-tag {
+  font-size: 10px;
+  color: $warn;
+  background: rgba(245,158,11,0.1);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+.perm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.perm-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: $text2; cursor: pointer; input { accent-color: $orange; cursor: pointer; } }
+.perm-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.perm-tag { background: rgba(245,151,10,0.1); color: $orange; font-size: 10px; padding: 2px 6px; border-radius: 3px; border: 1px solid rgba(245,151,10,0.2); }
+
+// ─── Health Monitor ──────────────────────────────────────────────────────────
+
+.health-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 24px;
+
+  &__dot { width: 10px; height: 10px; border-radius: 50%; background: $ok; animation: pulse 2s infinite; flex-shrink: 0; }
+  &__text { font-size: 14px; font-weight: 600; color: $ok; flex: 1; }
+  &__check { font-size: 12px; color: $text3; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px) { grid-template-columns: 1fr; }
+}
+
+.health-card {
+  background: $surface;
+  border: 1px solid $border2;
+  border-radius: 10px;
+  padding: 16px;
+
+  &__header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  &__icon { font-size: 22px; }
+  &__title { font-size: 13px; font-weight: 600; }
+  &__status { font-size: 11px; color: $text3; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+  &__uptime { margin-left: auto; font-size: 18px; font-weight: 700; color: $ok; }
+  &__metrics { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+  &__meta { font-size: 10px; color: $text3; }
+}
+
+.health-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; &.ok { background: $ok; } &.err { background: $err; } }
+
+.health-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  &__label { color: $text3; }
+  &__val { font-weight: 600; }
+}
+
+.health-uptime-bar {
+  width: 80px;
+  height: 4px;
+  background: $surface3;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.health-uptime-fill { height: 100%; border-radius: 2px; }
+
+.health-chart-card {
+  background: $surface;
+  border: 1px solid $border2;
+  border-radius: 10px;
+  padding: 20px;
+}
+.health-chart-title { font-size: 13px; font-weight: 600; color: $text3; text-transform: uppercase; letter-spacing: 0.04em; margin: 0 0 16px; }
+
+// ─── API Dashboard Layout ────────────────────────────────────────────────────
+
+.api-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .int-layout { flex-direction: column; }
+  .int-sidebar {
+    width: 100%; height: auto; min-height: auto; position: relative;
+    &__nav { flex-direction: row; overflow-x: auto; padding: 8px; gap: 4px; }
+    &__item { flex-direction: column; gap: 4px; padding: 8px; min-width: 80px; text-align: center; }
+    &__item-desc { display: none; }
+    &__footer { display: none; }
+  }
+  .int-content { padding: 16px; }
+  .int-header { padding: 14px 16px; }
+  .stripe-metrics { grid-template-columns: 1fr; }
+  .supa-status-grid { grid-template-columns: 1fr; }
+  .perm-grid { grid-template-columns: 1fr 1fr; }
+  .int-card__stats { grid-template-columns: 1fr 1fr; }
+}
