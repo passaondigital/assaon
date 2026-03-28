@@ -1,0 +1,309 @@
+// =============================================================================
+// ASSAON BILLING & REVENUE — Phase 5 Styles
+// =============================================================================
+
+$orange: #F5970A; $orange-h: #D96A10;
+$bg: #0f0f0f; $surface: #141414; $surface2: #1a1a1a; $surface3: #222;
+$border: #1e1e1e; $border2: #2a2a2a;
+$t1: #fff; $t2: #b0b0b0; $t3: #666;
+$ok: #22c55e; $warn: #f59e0b; $err: #ef4444;
+
+// ─── Layout ──────────────────────────────────────────────────────────────────
+
+.bl-layout { display: flex; min-height: 100vh; background: $bg; color: $t1; font-family: 'Poppins','Inter',sans-serif; * { box-sizing: border-box; } }
+
+.bl-sidebar {
+  width: 250px; min-height: 100vh; background: $surface; border-right: 1px solid $border;
+  display: flex; flex-direction: column; flex-shrink: 0; position: sticky; top: 0; height: 100vh;
+
+  &__logo { display: flex; align-items: center; gap: 12px; padding: 24px 20px 20px; border-bottom: 1px solid $border; }
+  &__title { font-size: 14px; font-weight: 700; }
+  &__sub { font-size: 11px; color: $t3; }
+  &__nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+
+  &__item {
+    display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px;
+    border: none; background: transparent; color: $t3; cursor: pointer; text-align: left; width: 100%; transition: all .15s;
+    &:hover { background: $surface2; color: $t2; }
+    &.active { background: rgba(245,151,10,.1); color: $orange; border-left: 3px solid $orange; padding-left: 9px; }
+  }
+  &__icon { font-size: 18px; flex-shrink: 0; }
+  &__label { display: block; font-size: 13px; font-weight: 600; }
+  &__desc { display: block; font-size: 10px; color: $t3; margin-top: 1px; }
+  &__footer { padding: 16px 20px; border-top: 1px solid $border; display: flex; flex-direction: column; gap: 4px; }
+  &__back { font-size: 12px; color: $t3; text-decoration: none; &:hover { color: $orange; } }
+  &__version { font-size: 10px; color: #2a2a2a; margin-top: 6px; }
+}
+
+.bl-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.bl-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 28px; border-bottom: 1px solid $border; background: $surface;
+  &__title { font-size: 20px; font-weight: 700; margin: 0; }
+  &__sub { font-size: 12px; color: $t3; }
+  &__left { display: flex; flex-direction: column; gap: 2px; }
+  &__right { display: flex; align-items: center; gap: 16px; }
+  &__mrr { font-size: 13px; color: $t2; strong { color: $ok; } }
+  &__badge { font-size: 11px; color: $ok; background: rgba(34,197,94,.1); padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(34,197,94,.2); }
+}
+
+.bl-content { padding: 24px 28px; flex: 1; }
+
+// ─── Shared ───────────────────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px;
+  border: 1px solid transparent; font-size: 13px; font-weight: 500; font-family: inherit; cursor: pointer; transition: all .15s;
+  &--primary { background: $orange; color: #000; border-color: $orange; &:hover { background: $orange-h; } }
+  &--secondary { background: $surface2; color: $t2; border-color: $border2; &:hover { border-color: $orange; color: $orange; } }
+  &--danger { background: rgba(239,68,68,.1); color: $err; border-color: rgba(239,68,68,.3); &:hover { background: rgba(239,68,68,.2); } }
+  &--sm { padding: 5px 12px; font-size: 12px; }
+  &:disabled { opacity: .4; cursor: not-allowed; }
+}
+
+.bl-badge {
+  display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  &--ok      { background: rgba(34,197,94,.12);  color: $ok;   border: 1px solid rgba(34,197,94,.25); }
+  &--warn    { background: rgba(245,158,11,.12); color: $warn; border: 1px solid rgba(245,158,11,.25); }
+  &--err     { background: rgba(239,68,68,.12);  color: $err;  border: 1px solid rgba(239,68,68,.25); }
+}
+
+.bl-section {
+  background: $surface; border: 1px solid $border2; border-radius: 12px; padding: 20px; margin-bottom: 20px;
+  &__header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+    h3, h4 { margin: 0; font-size: 14px; font-weight: 700; } }
+}
+
+.bl-count { font-size: 11px; color: $t3; background: $surface3; padding: 2px 8px; border-radius: 10px; }
+.bl-code { font-family: monospace; font-size: 11px; color: $t2; background: $surface3; padding: 2px 6px; border-radius: 3px; }
+
+.bl-input, .bl-select, .bl-textarea {
+  width: 100%; background: $surface3; border: 1px solid $border2; border-radius: 6px;
+  color: $t1; padding: 9px 12px; font-size: 13px; font-family: inherit;
+  &::placeholder { color: $t3; } &:focus { outline: none; border-color: $orange; }
+  option { background: $surface; }
+}
+.bl-textarea { resize: vertical; }
+
+.form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;
+  label { font-size: 12px; color: $t3; font-weight: 500; }
+  &--inline { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+
+.toggle-btn {
+  width: 40px; height: 22px; border-radius: 11px; background: $surface3; border: 1px solid $border2;
+  cursor: pointer; position: relative; flex-shrink: 0; transition: all .2s;
+  &.on { background: $orange; border-color: $orange; }
+  &__knob { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: $t3; transition: all .2s; .toggle-btn.on & { left: calc(100% - 18px); background: #000; } }
+}
+
+.action-btn-sm {
+  background: $surface2; border: 1px solid $border2; border-radius: 4px; color: $t2; font-size: 11px;
+  padding: 4px 9px; cursor: pointer; font-family: inherit; transition: all .12s;
+  &:hover { border-color: $orange; color: $orange; }
+  &--danger:hover { border-color: $err; color: $err; }
+}
+
+// ─── Tables ───────────────────────────────────────────────────────────────────
+
+.bl-table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid $border; }
+.bl-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+  thead tr { background: $surface; border-bottom: 1px solid $surface3; }
+  th { padding: 10px 14px; text-align: left; color: $t3; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+  tbody tr { border-bottom: 1px solid $border; transition: background .1s; &:hover { background: $surface2; } &:last-child { border-bottom: none; } }
+  td { padding: 10px 14px; color: $t2; }
+  &__dim  { color: $t3; }
+  &__bold { color: $t1; font-weight: 600; }
+  &__actions { display: flex; gap: 6px; }
+}
+
+// ─── Pagination ───────────────────────────────────────────────────────────────
+
+.bl-pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
+.bl-pagination__info { font-size: 12px; color: $t3; }
+.bl-pagination__controls { display: flex; gap: 4px; }
+.bl-page-btn {
+  background: $surface2; border: 1px solid $border2; border-radius: 5px; color: $t3; padding: 5px 10px;
+  font-size: 12px; font-family: inherit; cursor: pointer; transition: all .12s;
+  &:hover:not(:disabled) { border-color: $orange; color: $orange; }
+  &:disabled { opacity: .3; cursor: not-allowed; }
+  &.active { background: $orange; color: #000; border-color: $orange; font-weight: 700; }
+}
+
+// ─── Modal ────────────────────────────────────────────────────────────────────
+
+.bl-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: flex; align-items: center; justify-content: center; z-index: 999; padding: 20px; }
+.bl-modal {
+  background: $surface; border: 1px solid $border2; border-radius: 12px; width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto;
+  &__header { display: flex; align-items: flex-start; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid $border; h3 { margin: 0; font-size: 16px; } }
+  &__sub { font-size: 12px; color: $t3; margin-top: 2px; }
+  &__close { background: none; border: none; color: $t3; font-size: 18px; cursor: pointer; &:hover { color: $t1; } }
+  &__body { padding: 20px 24px; }
+  &__footer { display: flex; gap: 10px; padding: 16px 24px; border-top: 1px solid $border; justify-content: flex-end; }
+  &__note { font-size: 12px; color: $t3; margin: 12px 0 0; }
+}
+
+// ─── Subscription Card ────────────────────────────────────────────────────────
+
+.sub-card {
+  background: linear-gradient(135deg, $surface2, $surface3); border: 1px solid $border2; border-radius: 12px; padding: 20px;
+  &__header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 4px; }
+  &__plan { font-size: 22px; font-weight: 800; margin: 0; }
+  &__price { font-size: 28px; font-weight: 700; color: $orange; margin: 0 0 4px; span { font-size: 14px; color: $t3; font-weight: 400; } }
+  &__period { font-size: 12px; color: $t3; margin: 0 0 14px; }
+  &__features { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 6px;
+    li { font-size: 13px; color: $t2; display: flex; align-items: center; gap: 8px; }
+    .check { color: $ok; font-weight: 700; }
+  }
+  &__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+}
+
+.plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
+.plan-option {
+  background: $surface2; border: 1px solid $border2; border-radius: 10px; padding: 14px; transition: border-color .15s;
+  &.current { border-color: $orange; background: rgba(245,151,10,.06); }
+  &:hover { border-color: $border2; }
+  &__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  &__name { font-weight: 700; font-size: 14px; }
+  &__price { font-size: 13px; color: $orange; font-weight: 600; }
+  &__features { list-style: none; padding: 0; margin: 0 0 12px; font-size: 11px; color: $t3; display: flex; flex-direction: column; gap: 4px; }
+  &__current { font-size: 11px; color: $ok; font-weight: 600; }
+}
+
+.cancel-warning { font-size: 14px; color: $warn; margin-bottom: 12px; }
+.cancel-loss { list-style: none; padding: 0; margin: 0 0 16px; font-size: 13px; color: $t3; display: flex; flex-direction: column; gap: 4px; li { &::before { content: '✗ '; color: $err; } } }
+.cancel-pause-offer { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: rgba(245,151,10,.08); border: 1px solid rgba(245,151,10,.2); border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 13px; color: $t2; }
+
+// ─── Payment Methods ──────────────────────────────────────────────────────────
+
+.pm-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.pm-card {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: $surface2; border: 1px solid $border2; border-radius: 8px; transition: border-color .15s;
+  &.default { border-color: $orange; }
+  &__icon { font-size: 22px; }
+  &__info { flex: 1; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  &__brand { font-weight: 600; font-size: 13px; }
+  &__num, &__expiry { font-size: 12px; color: $t3; font-family: monospace; }
+  &__default-badge { font-size: 11px; color: $ok; background: rgba(34,197,94,.1); padding: 2px 8px; border-radius: 10px; }
+  &__actions { display: flex; gap: 6px; }
+}
+.pm-add-form { background: $surface2; border: 1px solid $border2; border-radius: 10px; padding: 18px; margin-top: 8px; h4 { margin: 0 0 14px; font-size: 14px; } }
+
+// ─── Usage ────────────────────────────────────────────────────────────────────
+
+.usage-meters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; @media (max-width: 800px) { grid-template-columns: 1fr; } }
+.usage-meter-card {
+  background: $surface2; border: 1px solid $border2; border-radius: 10px; padding: 14px;
+  &__header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  &__name { font-size: 13px; font-weight: 600; }
+  &__overage { font-size: 11px; color: $t3; }
+  &__values { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; font-size: 18px; font-weight: 700; }
+  &__limit { font-size: 12px; color: $t3; font-weight: 400; }
+  &__meta { font-size: 11px; color: $t3; margin-top: 6px; }
+}
+
+.usage-bar { height: 6px; background: $surface3; border-radius: 3px; overflow: hidden; &--lg { height: 8px; } &__fill { height: 100%; border-radius: 3px; transition: width .3s; } }
+.usage-projected { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: $surface3; border-radius: 8px; font-size: 13px; }
+
+.usage-meters-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; @media (max-width: 900px) { grid-template-columns: 1fr; } }
+.usage-meter-full {
+  background: $surface2; border: 1px solid $border2; border-radius: 10px; padding: 16px;
+  &__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  &__name { font-size: 14px; font-weight: 700; margin: 0 0 3px; }
+  &__price { font-size: 11px; color: $t3; }
+  &__right { text-align: right; }
+  &__usage { font-size: 20px; font-weight: 700; display: block; }
+  &__limit { font-size: 11px; color: $t3; }
+  &__meta { display: flex; justify-content: space-between; font-size: 11px; color: $t3; margin-top: 6px; }
+}
+
+.meter-config-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; @media (max-width: 900px) { grid-template-columns: 1fr; } }
+.meter-config-card { background: $surface2; border: 1px solid $border2; border-radius: 10px; padding: 16px; h4 { margin: 0 0 14px; font-size: 14px; } }
+
+// ─── Revenue Charts ───────────────────────────────────────────────────────────
+
+.rev-tab {}
+.rev-kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 24px; @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); } @media (max-width: 600px) { grid-template-columns: 1fr 1fr; } }
+.rev-kpi { background: $surface; border: 1px solid $border2; border-radius: 10px; padding: 16px;
+  &__label { font-size: 10px; color: $t3; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+  &__value { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  &__delta { font-size: 11px; color: $ok; &.down { color: $err; } margin-bottom: 3px; }
+  &__sub { font-size: 10px; color: $t3; }
+}
+
+.rev-charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; @media (max-width: 768px) { grid-template-columns: 1fr; } }
+.rev-chart-card { background: $surface; border: 1px solid $border2; border-radius: 10px; padding: 18px;
+  &--wide { grid-column: 1 / -1; }
+  h4 { font-size: 12px; color: $t3; text-transform: uppercase; letter-spacing: .04em; margin: 0 0 14px; font-weight: 600; }
+}
+.rev-exports { display: flex; gap: 12px; }
+
+// ─── Cohort ───────────────────────────────────────────────────────────────────
+
+.cohort-table { font-size: 12px; }
+.cohort-cell { text-align: center; font-weight: 600; font-size: 12px; transition: background .2s; &--empty { color: #333; text-align: center; } }
+.cohort-label { font-weight: 600; white-space: nowrap; }
+.cohort-legend { display: flex; align-items: center; gap: 8px; font-size: 11px; color: $t3;
+  span { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+}
+.cohort-insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; @media (max-width: 768px) { grid-template-columns: 1fr; } }
+.insight-card { display: flex; gap: 12px; padding: 14px; background: $surface2; border: 1px solid $border2; border-radius: 10px;
+  &__icon { font-size: 22px; flex-shrink: 0; }
+  strong { display: block; font-size: 13px; margin-bottom: 4px; }
+  p { font-size: 12px; color: $t3; margin: 0; line-height: 1.5; }
+}
+
+// ─── Predictive ───────────────────────────────────────────────────────────────
+
+.scenario-toggle { display: flex; gap: 4px; }
+.scenario-btn {
+  padding: 6px 14px; border-radius: 6px; border: 1px solid $border2; background: $surface2;
+  color: $t3; font-size: 12px; font-family: inherit; cursor: pointer; transition: all .15s;
+  &:hover { color: $t2; border-color: $border2; }
+  &.active { background: $orange; color: #000; border-color: $orange; font-weight: 600; }
+}
+.forecast-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); } }
+.forecast-stat {
+  background: $surface2; border: 1px solid $border2; border-radius: 8px; padding: 12px;
+  &__label { font-size: 10px; color: $t3; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  &__value { font-size: 16px; font-weight: 700; small { font-size: 12px; color: $ok; margin-left: 4px; } &.up { color: $ok; } }
+}
+.risk-score { display: flex; align-items: center; gap: 8px; }
+.risk-bar { width: 60px; height: 4px; background: $surface3; border-radius: 2px; overflow: hidden; div { height: 100%; border-radius: 2px; } }
+
+// ─── Invoice detail ───────────────────────────────────────────────────────────
+
+.inv-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px;
+  label { display: block; font-size: 10px; color: $t3; text-transform: uppercase; margin-bottom: 4px; }
+}
+.inv-totals { border-top: 1px solid $border; padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.inv-total-row { display: flex; justify-content: space-between; font-size: 13px; color: $t2;
+  &--total { font-size: 15px; font-weight: 700; color: $t1; border-top: 1px solid $border; padding-top: 8px; margin-top: 4px; }
+}
+
+// ─── Billing Address ──────────────────────────────────────────────────────────
+
+.bl-address-display { font-size: 13px; color: $t2; line-height: 1.8; p { margin: 0; } }
+.bl-address-form {}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .bl-layout { flex-direction: column; }
+  .bl-sidebar { width: 100%; height: auto; position: relative;
+    &__nav { flex-direction: row; overflow-x: auto; padding: 8px; gap: 4px; }
+    &__item { flex-direction: column; gap: 4px; padding: 8px; min-width: 80px; text-align: center; }
+    &__desc { display: none; }
+    &__footer { display: none; }
+  }
+  .bl-content { padding: 16px; }
+  .bl-header { padding: 14px 16px; }
+  .plans-grid { grid-template-columns: 1fr; }
+  .rev-kpi-grid { grid-template-columns: 1fr 1fr; }
+  .forecast-summary { grid-template-columns: 1fr 1fr; }
+  .inv-detail-grid { grid-template-columns: 1fr 1fr; }
+}
