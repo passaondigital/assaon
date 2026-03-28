@@ -1,16 +1,26 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Link } from "react-router-dom";
+import { Layout } from "@/components/layout/Layout";
+import { Button } from "@/components/ui/button";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+export default function Index() {
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <Layout>
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-6 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+          The platform for <span className="text-primary">animal professionals</span>
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-xl mb-8">
+          No-code tools for veterinarians, breeders, trainers, and wildlife experts. Build, manage, and grow — all in one place.
+        </p>
+        <div className="flex gap-3">
+          <Link to="/auth/login">
+            <Button size="lg">Get Started</Button>
+          </Link>
+          <Link to="/auth/login">
+            <Button variant="outline" size="lg">Login</Button>
+          </Link>
+        </div>
+      </div>
+    </Layout>
   );
-};
-
-const Index = PlaceholderIndex;
-
-export default Index;
+}
